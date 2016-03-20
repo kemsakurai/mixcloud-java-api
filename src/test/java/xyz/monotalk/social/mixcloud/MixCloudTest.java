@@ -6,7 +6,7 @@
 package xyz.monotalk.social.mixcloud;
 
 import org.junit.Test;
-import xyz.monotalk.social.mixcloud.data.Response;
+import xyz.monotalk.social.mixcloud.data.Show;
 
 /**
  * MixCloudTest
@@ -14,13 +14,14 @@ import xyz.monotalk.social.mixcloud.data.Response;
  * @author Kem
  */
 public class MixCloudTest {
-    
+
     @Test
     public void testShow() {
-        Response res = MixCloud.user("spartacus")
-                 .show("party-time")
-                 .build()
-                 .metadata()
-                 .get();
+        Show show = MixCloud.user("spartacus")
+                .show("party-time")
+                .build()
+                .metadata()
+                .get();
+        System.out.println(show);
     }
 }

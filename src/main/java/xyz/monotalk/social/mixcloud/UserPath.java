@@ -44,8 +44,8 @@ public class UserPath implements Pathable<User>, RequesterBuilder {
     }
 
     @Override
-    public Requester build() {
-        return new Requester(this);
+    public Requester<User> build() {
+        return new Requester<>(this);
     }
 
     @Override

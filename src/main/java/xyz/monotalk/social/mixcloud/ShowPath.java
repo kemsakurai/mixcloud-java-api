@@ -17,8 +17,6 @@ package xyz.monotalk.social.mixcloud;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import xyz.monotalk.social.mixcloud.data.Show;
 
 /**
@@ -46,19 +44,18 @@ public class ShowPath implements Pathable<Show>, RequesterBuilder {
     }
 
     @Override
-    public Requester build() {
-        return new Requester(this);
+    public Requester<Show> build() {
+        return new Requester<>(this);
     }
 
     @Override
     public Show newResponse(String body) {
         ObjectMapper mapper = new ObjectMapper();
         Show result = null;
-
         try {
             result = mapper.readValue(body, Show.class);
         } catch (IOException ex) {
-            Logger.getLogger(ShowPath.class.getName()).log(Level.SEVERE, null, ex);
+            throw new IllegalArgumentException(ex);
         }
         return result;
     }
