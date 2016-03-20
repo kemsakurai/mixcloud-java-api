@@ -45,14 +45,18 @@ public class MixCloudResponseHandler<R extends Response> implements ResponseHand
         // StatusLine
         StatusLine statusLine = response.getStatusLine();
 
+        // -----------------------
         // 200 OK
+        // ---------
         if (HttpStatus.SC_OK == statusLine.getStatusCode()) {
             String body = getBodyOrThrow(response);
             // Return Response
             return pathable.newResponse(body);
         }
 
+        // -----------------------
         // 403 Error
+        // ---------
         if (HttpStatus.SC_FORBIDDEN == statusLine.getStatusCode()) {
             // Header [Retry-After]
             Header header = response.getFirstHeader("Retry-After");
@@ -64,12 +68,20 @@ public class MixCloudResponseHandler<R extends Response> implements ResponseHand
             MixCloudError error = JacksonUtils.readValue(body, MixCloudError.class);
             throw new MixCloudRateLimitException(error);
         }
+        
         // Throw Exception
         throwNewException(statusLine);
         return null;
     }
 
-    protected String getBodyOrThrow(HttpResponse response) throws MixCloudResponseRuntimeException {
+    /**
+     * getBodyOrThrow
+     *
+     * @param response
+     * @return
+     * @throws MixCloudResponseRuntimeException
+     */
+    private String getBodyOrThrow(HttpResponse response) throws MixCloudResponseRuntimeException {
         String body = null;
         try {
             HttpEntity entity = response.getEntity();
@@ -86,7 +98,7 @@ public class MixCloudResponseHandler<R extends Response> implements ResponseHand
      *
      * @param statusLine
      */
-    protected void throwNewException(StatusLine statusLine) throws MixCloudResponseRuntimeException {
+    private void throwNewException(StatusLine statusLine) throws MixCloudResponseRuntimeException {
         // new Meaage
         String msg = MessageFormat.format("Error Http Status : {0} ReasonPhrase : {1}", statusLine.getStatusCode(), statusLine.getReasonPhrase());
         // Throw Exception

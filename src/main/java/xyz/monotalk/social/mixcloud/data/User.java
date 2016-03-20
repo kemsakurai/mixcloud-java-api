@@ -5,36 +5,60 @@
  */
 package xyz.monotalk.social.mixcloud.data;
 
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 /**
  * User
  *
  * @author Kem
  */
-@Data
+@Setter
+@Getter
+@AllArgsConstructor
 @Builder
+@ToString
 public class User extends Response {
 
+    public User() {
+        super();
+    }
+
+    @JsonProperty("username")
     private String userName;
     private String city;
-    private int favorite_count;
+    @JsonProperty("favorite_count")
+    private int favoriteCount;
     private String name;
-    private int following_count;
+    @JsonProperty("following_count")
+    private int followingCount;
     private String url;
-    private int listen_count;
-    private String updated_time;
-    private boolean is_premium;
-    private String created_time;
+    @JsonProperty("listen_count")
+    private int listenCount;
+    @JsonProperty("updated_time")
+    private String updatedTime;
+    @JsonProperty("is_premium")
+    private boolean isPremium;
+    @JsonProperty("created_time")
+    private String createdTime;
     private String blog;
     private String key;
     private String country;
-    private int follower_count;
-    private String picture_primary_color;
-    private boolean is_pro;
-    private String cloudcast_count;
+    @JsonProperty("follower_count")
+    private int followerCount;
+    @JsonProperty("picture_primary_color")
+    private String picturePrimaryColor;
+    @JsonProperty("is_pro")
+    private boolean isPro;
+    @JsonProperty("cloudcast_count")
+    private String cloudcastCount;
     private Pictures pictures;
-    private CoverPictures cover_pictures;
+    @JsonProperty("cover_pictures")
+    private CoverPictures coverPictures;
+    private String type;
 
 }

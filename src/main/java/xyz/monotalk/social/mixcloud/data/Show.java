@@ -6,17 +6,27 @@
 package xyz.monotalk.social.mixcloud.data;
 
 import java.util.List;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 /**
  * Show
  *
  * @author Kem
  */
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
 @Builder
+@ToString
 public class Show extends Response {
+
+    public Show() {
+        super();
+    }
 
     private String description;
     private List<Tag> tags;
@@ -36,4 +46,5 @@ public class Show extends Response {
     private String picture_primary_color;
     private int comment_count;
     private String[] sections;
+    private String type;
 }

@@ -5,6 +5,8 @@
  */
 package xyz.monotalk.social.mixcloud;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 import org.junit.Test;
 import xyz.monotalk.social.mixcloud.data.Show;
 
@@ -16,12 +18,18 @@ import xyz.monotalk.social.mixcloud.data.Show;
 public class MixCloudTest {
 
     @Test
-    public void testShow() {
+    public void sholdShowNameIsPartyTime() {
+        // Get Show
         Show show = MixCloud.user("spartacus")
                 .show("party-time")
                 .build()
                 .metadata()
                 .get();
-        System.out.println(show);
+
+        // Verify
+        assertThat(show.getName(), is("Party Time"));
+        assertThat(show.getUser().getName(), is("Spartacus"));
+
     }
+    
 }

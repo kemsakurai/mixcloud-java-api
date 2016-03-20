@@ -5,15 +5,23 @@
  */
 package xyz.monotalk.social.mixcloud.data;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Response
  *
  * @author Kem
  */
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
 public class Response {
+
+    public Response() {
+        super();
+    }
 
     private Metadata metadata;
 }

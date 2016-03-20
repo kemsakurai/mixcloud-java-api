@@ -5,17 +5,25 @@
  */
 package xyz.monotalk.social.mixcloud.data;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Connections
  *
  * @author Kem
  */
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
 @Builder
 public class Connections {
+
+    public Connections() {
+        super();
+    }
 
     private String feed;
     private String playlists;
@@ -25,5 +33,7 @@ public class Connections {
     private String following;
     private String cloudcasts;
     private String listens;
+    private String listeners;
+    private String similar;
 
 }

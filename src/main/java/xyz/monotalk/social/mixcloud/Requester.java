@@ -12,9 +12,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.http.Header;
-import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.ParseException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -24,7 +22,6 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HttpContext;
-import org.apache.http.util.EntityUtils;
 import xyz.monotalk.social.mixcloud.data.Response;
 
 /**
@@ -48,20 +45,29 @@ public class Requester<R extends Response> {
     }
 
     /**
-     * GET method
+     * get method
      *
      * @return
      */
     public R get() {
         // new instance
         HttpClient httpClient = newHttpClient();
-        HttpGet httpGet = new HttpGet();
+
+        // new HttpGet
+        StringBuilder sb = new StringBuilder("https://api.mixcloud.com/");
+        sb.append(pathable.toPath());
+        if (appendMetadata) {
+            sb.append("?metadata=1");
+        }
+
+        Logger.getLogger(Requester.class.getName()).log(Level.INFO, sb.toString());
+        HttpGet httpGet = new HttpGet(sb.toString());
+
         try {
-            return (R) httpClient.execute(httpGet, (HttpContext) new MixCloudResponseHandler<>(pathable));
+            return httpClient.execute(httpGet, new MixCloudResponseHandler<>(pathable));
         } catch (IOException ex) {
             throw new MixCloudResponseRuntimeException(ex);
         }
-
     }
 
     /**
@@ -71,21 +77,27 @@ public class Requester<R extends Response> {
      */
     public R post() {
         HttpClient httpClient = newHttpClient();
-        HttpPost method = new HttpPost();
-        List<NameValuePair> requestParams = new ArrayList<>();
-        requestParams.add(new BasicNameValuePair("foo", "var"));
-        String body = null;
-        try {
-            method.setEntity(new UrlEncodedFormEntity(requestParams));
-            HttpResponse response = httpClient.execute(method);
-            int responseStatus = response.getStatusLine().getStatusCode();
-            body = EntityUtils.toString(response.getEntity(), "UTF-8");
-        } catch (UnsupportedEncodingException ex) {
-            Logger.getLogger(Requester.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException | ParseException ex) {
-            Logger.getLogger(Requester.class.getName()).log(Level.SEVERE, null, ex);
+
+        // new HttpPost
+        StringBuilder sb = new StringBuilder("https://api.mixcloud.com/");
+        sb.append(pathable.toPath());
+        HttpPost httpPost = new HttpPost(sb.toString());
+
+        // add requestParams
+        if (appendMetadata) {
+            try {
+                List<NameValuePair> requestParams = new ArrayList<>();
+                requestParams.add(new BasicNameValuePair("metadata", "1"));
+                httpPost.setEntity(new UrlEncodedFormEntity(requestParams));
+            } catch (UnsupportedEncodingException ex) {
+                throw new MixCloudResponseRuntimeException(ex);
+            }
         }
-        return pathable.newResponse(body);
+        try {
+            return (R) httpClient.execute(httpPost, (HttpContext) new MixCloudResponseHandler<>(pathable));
+        } catch (IOException ex) {
+            throw new MixCloudResponseRuntimeException(ex);
+        }
     }
 
     /**
@@ -94,23 +106,17 @@ public class Requester<R extends Response> {
      * @return
      */
     private HttpClient newHttpClient() {
-
-        // configurations
-        int socketTimeout = 3;
-        int connectionTimeout = 3;
-        String userAgent = "My Http Client 0.1";
-
         // request configuration
         RequestConfig requestConfig = RequestConfig.custom()
-                .setConnectTimeout(connectionTimeout)
-                .setSocketTimeout(socketTimeout)
+                .setConnectTimeout(2000)
+                .setSocketTimeout(2000)
                 .build();
 
         // headers
         List<Header> headers = new ArrayList<>();
         headers.add(new BasicHeader("Accept-Charset", "utf-8"));
         headers.add(new BasicHeader("Accept-Language", "ja, en;q=0.8"));
-        headers.add(new BasicHeader("User-Agent", userAgent));
+        headers.add(new BasicHeader("User-Agent", "Mozilla/5.0"));
 
         // create client
         HttpClient httpClient = HttpClientBuilder.create()

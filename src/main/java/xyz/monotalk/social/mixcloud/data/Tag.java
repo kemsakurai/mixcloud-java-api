@@ -5,16 +5,28 @@
  */
 package xyz.monotalk.social.mixcloud.data;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 /**
  * Tag
+ *
  * @author kensakurai
  */
-@Data
+@Setter
+@Getter
+@AllArgsConstructor
 @Builder
+@ToString
 public class Tag {
+
+    public Tag() {
+        super();
+    }
+    private String type;
     private String url;
     private String name;
     private String key;
