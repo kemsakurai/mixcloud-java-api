@@ -15,6 +15,8 @@
  */
 package xyz.monotalk.social.mixcloud;
 
+import lombok.NonNull;
+
 /**
  * MixCloud
  *
@@ -22,11 +24,51 @@ package xyz.monotalk.social.mixcloud;
  */
 public class MixCloud {
 
-    public static UserPath user(String userName) {
+    /**
+     * user
+     *
+     * @param userName
+     * @return
+     */
+    public static UserPath user(@NonNull String userName) {
         return new UserPath(userName);
     }
 
+    /**
+     * discover
+     *
+     * @return
+     */
     public static Discover discover() {
         return new Discover();
+    }
+
+    /**
+     * polular
+     *
+     * @return
+     */
+    public static Popular polular() {
+        return new Popular();
+    }
+
+    /**
+     * search
+     *
+     * @param query
+     * @return
+     */
+    public static SearchPath search(@NonNull String query) {
+        return new SearchPath(query);
+    }
+    
+    /**
+     * directGet
+     * @param <R> 
+     * @param url 
+     * @return  
+     */
+    public static <R> R directGet(String url) {
+        return new Direct<R>(url).build().get();
     }
 }

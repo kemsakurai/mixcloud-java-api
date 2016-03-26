@@ -15,7 +15,8 @@
  */
 package xyz.monotalk.social.mixcloud;
 
-import xyz.monotalk.social.mixcloud.data.Response;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 /**
  * Pathable
@@ -23,7 +24,25 @@ import xyz.monotalk.social.mixcloud.data.Response;
  * @author Kem
  * @param <R>
  */
-public interface Pathable<R extends Response> {
+public interface Pathable<R> {
+
     public String toPath();
+
     public R newResponse(String body);
+    
+    /**
+     * encode
+     *
+     * @param value
+     * @return
+     */
+    public default String encode(String value) {
+        String encodedValue = null;
+        try {
+            encodedValue = URLEncoder.encode(value, "UTF-8");
+        } catch (UnsupportedEncodingException ex) {
+            throw new RuntimeException(ex);
+        }
+        return encodedValue;
+    }
 }

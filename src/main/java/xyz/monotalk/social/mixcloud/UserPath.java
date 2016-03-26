@@ -15,6 +15,7 @@
  */
 package xyz.monotalk.social.mixcloud;
 
+import lombok.NonNull;
 import xyz.monotalk.social.mixcloud.data.User;
 import xyz.monotalk.social.mixcloud.internal.JacksonUtils;
 
@@ -27,8 +28,7 @@ public class UserPath implements Pathable<User>, RequesterBuilder {
 
     private final String userName;
 
-    UserPath(String userName) {
-        Assert.assertNullOrEmpty(userName);
+    UserPath(@NonNull String userName) {
         this.userName = userName;
     }
 
@@ -39,7 +39,7 @@ public class UserPath implements Pathable<User>, RequesterBuilder {
     @Override
     public String toPath() {
         StringBuilder sb = new StringBuilder();
-        sb.append(userName);
+        sb.append(encode(userName));
         sb.append("/");
         return sb.toString();
     }

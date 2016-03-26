@@ -22,12 +22,12 @@ import lombok.ToString;
 @AllArgsConstructor
 @Builder
 @ToString
-public class Show extends Response {
+public class Show extends MetaDataHolder {
 
     public Show() {
         super();
     }
-
+    
     private String description;
     private List<Tag> tags;
     private int play_count;

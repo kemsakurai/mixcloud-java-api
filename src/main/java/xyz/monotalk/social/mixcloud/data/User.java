@@ -22,7 +22,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Builder
 @ToString
-public class User extends Response {
+public class User extends MetaDataHolder {
 
     public User() {
         super();

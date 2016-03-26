@@ -5,23 +5,31 @@
  */
 package xyz.monotalk.social.mixcloud.data;
 
-import lombok.AllArgsConstructor;
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
- * Response
+ * MixCloudResult
  *
- * @author Kem
+ * @author kensakurai
+ * @param <T>
  */
 @Getter
 @Setter
-@AllArgsConstructor
-public class Response {
+@ToString
+public class MixCloudResult<T> {
 
-    public Response() {
+    /**
+     * Constructor
+     */
+    public MixCloudResult() {
         super();
     }
+    
+    private Paging paging;
+    private List<T> data;
+    private String name;
 
-    private Metadata metadata;
 }

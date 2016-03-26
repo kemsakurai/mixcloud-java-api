@@ -46,7 +46,7 @@ public class ShowPath implements Pathable<Show>, RequesterBuilder {
     public Requester<Show> build() {
         return new Requester<>(this);
     }
-    
+
     @Override
     public Show newResponse(String body) {
         return JacksonUtils.readValue(body, Show.class);

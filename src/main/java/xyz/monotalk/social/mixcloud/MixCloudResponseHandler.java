@@ -17,7 +17,6 @@ import org.apache.http.StatusLine;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.util.EntityUtils;
 import xyz.monotalk.social.mixcloud.data.MixCloudError;
-import xyz.monotalk.social.mixcloud.data.Response;
 import xyz.monotalk.social.mixcloud.internal.JacksonUtils;
 
 /**
@@ -26,7 +25,7 @@ import xyz.monotalk.social.mixcloud.internal.JacksonUtils;
  * @author kensakurai
  * @param <R>
  */
-public class MixCloudResponseHandler<R extends Response> implements ResponseHandler<R> {
+public class MixCloudResponseHandler<R> implements ResponseHandler<R> {
 
     private Pathable<R> pathable = null;
 

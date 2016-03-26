@@ -1,6 +1,6 @@
 package xyz.monotalk.social.mixcloud;
 
-import xyz.monotalk.social.mixcloud.data.Response;
+import xyz.monotalk.social.mixcloud.data.MetaDataHolder;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -36,7 +36,7 @@ public class Discover implements Pathable {
     }
 
     @Override
-    public Response newResponse(String body) {
+    public MetaDataHolder newResponse(String body) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

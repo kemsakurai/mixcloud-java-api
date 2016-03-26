@@ -40,5 +40,5 @@ public class Pictures {
     private String _640wx640h;
     @JsonProperty("1024wx1024h")
     private String _1024wx1024h;
-
+    
 }

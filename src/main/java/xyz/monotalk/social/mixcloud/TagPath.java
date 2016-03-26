@@ -5,7 +5,8 @@
  */
 package xyz.monotalk.social.mixcloud;
 
-import xyz.monotalk.social.mixcloud.data.Response;
+import lombok.NonNull;
+import xyz.monotalk.social.mixcloud.data.MetaDataHolder;
 
 /**
  * TagPath
@@ -15,21 +16,20 @@ public class TagPath implements Pathable {
     
     private final String tagName;
     
-    TagPath(String tagName) {
-        Assert.assertNullOrEmpty(tagName);
+    TagPath(@NonNull String tagName) {
         this.tagName = tagName;
     }
     
     @Override
     public String toPath() {
         StringBuilder sb = new StringBuilder();
-        sb.append(tagName);
+        sb.append(encode(tagName));
         sb.append("/");
         return sb.toString();
     }
 
     @Override
-    public Response newResponse(String body) {
+    public MetaDataHolder newResponse(String body) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
