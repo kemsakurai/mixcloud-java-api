@@ -1,5 +1,14 @@
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
+apply plugin : 'maven-publish'
+apply from : 'local.gradle'
+
+def defaultEncoding = 'UTF-8'
+def jdkVersion = '1.8'
+
+group = "xyz.monotalk.social"
+archivesBaseName = "mixcloud"
+version = '0.0.1'
 
 configurations {
     provided
@@ -33,6 +42,38 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
+// zip sources
+task sourceJar(type : Jar) {
+    from sourceSets.main.allJava
+}
+
+// zip javadocs
+task javadocJar(type : Jar, dependsOn : javadoc) {
+    from javadoc.destinationDir
+}
+
+// publishing description
+publishing {
+    publications {
+        dropwizardLsCommand(MavenPublication) {
+            from components.java
+            artifact sourceJar {
+                classifier = 'sources'
+                extension  = 'jar'
+            }
+            artifact javadocJar {
+                classifier = 'javadoc'
+                extension  = 'jar'
+            }
+        }
+    }
+    repositories {
+        maven {
+            url = "${repositoryUrl}"
+        }
+    }
+}
+
 test {
     testLogging {
         showStandardStreams = true
@@ -40,3 +81,4 @@ test {
         events 'started', 'skipped', 'passed', 'failed'
     }
 }
+

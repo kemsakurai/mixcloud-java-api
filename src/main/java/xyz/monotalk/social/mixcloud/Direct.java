@@ -40,7 +40,7 @@ public class Direct<R> extends AbstractDirect<R> implements RequesterBuilder {
         this.url = url;
 
         Map<TypeVariable<?>, Type> map = GenericUtil.getTypeVariableMap(getClass());
-
+        
         for (Class<?> c = getClass(); c != Object.class; c = c.getSuperclass()) {
             if (c.getSuperclass() == AbstractDirect.class) {
                 Type type = c.getGenericSuperclass();

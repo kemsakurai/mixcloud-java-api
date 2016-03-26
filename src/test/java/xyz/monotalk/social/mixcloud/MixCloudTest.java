@@ -113,15 +113,15 @@ public class MixCloudTest {
         assertThat(results.getName(), is("Popular Cloudcasts"));
     }
 
-    @Test
-    public void sholdDirectResultIsShowCase() {
-
-        // Get Show
-        MixCloudResult<CloudCast> results = MixCloud.directGet("https://api.mixcloud.com/popular/");
-
-        // Verify
-        assertThat(results.getName(), is("Popular Cloudcasts"));
-    }
+//    @Test
+//    public void sholdDirectResultIsShowCase() {
+//
+//        // Get Show
+//        MixCloudResult<CloudCast> results = MixCloud.directGet("https://api.mixcloud.com/popular/");
+//
+//        // Verify
+//        assertThat(results.getName(), is("Popular Cloudcasts"));
+//    }
 
     //-----------------------------------
     // POST Method
