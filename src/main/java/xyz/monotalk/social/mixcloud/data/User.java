@@ -6,11 +6,13 @@
 package xyz.monotalk.social.mixcloud.data;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import xyz.monotalk.social.mixcloud.internal.JsonUtils;
 
 /**
  * User
@@ -60,5 +62,8 @@ public class User extends MetaDataHolder {
     @JsonProperty("cover_pictures")
     private CoverPictures coverPictures;
     private String type;
-
+    
+    public Map<String, Object> toMap() {
+        return JsonUtils.toMap(this);
+    }
 }

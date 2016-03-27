@@ -8,14 +8,27 @@ package xyz.monotalk.social.mixcloud.internal;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
+import java.util.Map;
 import xyz.monotalk.social.mixcloud.data.MixCloudResult;
 
 /**
- * JacksonUtils
+ * JsonUtils
  *
  * @author kensakurai
  */
-public class JacksonUtils {
+public class JsonUtils {
+
+    /**
+     * toMap
+     *
+     * @param obj
+     * @return
+     */
+    public static Map<String, Object> toMap(Object obj) {
+        ObjectMapper mapper = new ObjectMapper();
+        Map<String, Object> objectAsMap = mapper.convertValue(obj, Map.class);
+        return objectAsMap;
+    }
 
     /**
      * readValue
@@ -35,7 +48,7 @@ public class JacksonUtils {
         }
         return result;
     }
-    
+
     /**
      * readResultValue
      *

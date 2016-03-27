@@ -5,9 +5,11 @@
  */
 package xyz.monotalk.social.mixcloud.data;
 
+import java.util.Map;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import xyz.monotalk.social.mixcloud.internal.JsonUtils;
 
 /**
  * Paging
@@ -25,4 +27,9 @@ public class Paging {
 
     private String previous;
     private String next;
+
+    public Map<String, Object> toMap() {
+        return JsonUtils.toMap(this);
+    }
+
 }

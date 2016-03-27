@@ -7,7 +7,7 @@ package xyz.monotalk.social.mixcloud;
 
 import xyz.monotalk.social.mixcloud.data.MixCloudResult;
 import xyz.monotalk.social.mixcloud.data.User;
-import xyz.monotalk.social.mixcloud.internal.JacksonUtils;
+import xyz.monotalk.social.mixcloud.internal.JsonUtils;
 
 /**
  * TypeUserPath
@@ -31,7 +31,7 @@ public class TypeUserPath implements Pathable<MixCloudResult<User>>, RequesterBu
 
     @Override
     public MixCloudResult<User> newResponse(String body) {
-        return JacksonUtils.readResultValue(body, User.class);
+        return JsonUtils.readResultValue(body, User.class);
     }
     
     @Override

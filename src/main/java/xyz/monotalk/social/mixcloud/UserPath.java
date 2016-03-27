@@ -17,7 +17,7 @@ package xyz.monotalk.social.mixcloud;
 
 import lombok.NonNull;
 import xyz.monotalk.social.mixcloud.data.User;
-import xyz.monotalk.social.mixcloud.internal.JacksonUtils;
+import xyz.monotalk.social.mixcloud.internal.JsonUtils;
 
 /**
  * UserPath
@@ -51,6 +51,6 @@ public class UserPath implements Pathable<User>, RequesterBuilder {
 
     @Override
     public User newResponse(String body) {
-        return JacksonUtils.readValue(body, User.class);
+        return JsonUtils.readValue(body, User.class);
     }
 }

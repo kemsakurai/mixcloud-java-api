@@ -8,7 +8,7 @@ package xyz.monotalk.social.mixcloud;
 import xyz.monotalk.social.mixcloud.data.CloudCast;
 import xyz.monotalk.social.mixcloud.data.MixCloudResult;
 import xyz.monotalk.social.mixcloud.data.Tag;
-import xyz.monotalk.social.mixcloud.internal.JacksonUtils;
+import xyz.monotalk.social.mixcloud.internal.JsonUtils;
 
 /**
  * TypeTag
@@ -33,7 +33,7 @@ public class TypeTag implements Pathable<MixCloudResult<Tag>>, RequesterBuilder 
 
     @Override
     public MixCloudResult<Tag> newResponse(String body) {
-        return JacksonUtils.readResultValue(body, Tag.class);
+        return JsonUtils.readResultValue(body, Tag.class);
     }
 
     @Override

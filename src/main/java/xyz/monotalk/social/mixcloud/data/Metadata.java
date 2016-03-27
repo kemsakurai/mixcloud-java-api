@@ -5,7 +5,9 @@
  */
 package xyz.monotalk.social.mixcloud.data;
 
+import java.util.Map;
 import lombok.Data;
+import xyz.monotalk.social.mixcloud.internal.JsonUtils;
 
 /**
  * Metadata
@@ -16,4 +18,8 @@ import lombok.Data;
 public class Metadata {
 
     private Connections connections;
+
+    public Map<String, Object> toMap() {
+        return JsonUtils.toMap(this);
+    }
 }

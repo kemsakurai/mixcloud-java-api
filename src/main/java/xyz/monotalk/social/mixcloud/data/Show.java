@@ -6,11 +6,13 @@
 package xyz.monotalk.social.mixcloud.data;
 
 import java.util.List;
+import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import xyz.monotalk.social.mixcloud.internal.JsonUtils;
 
 /**
  * Show
@@ -27,7 +29,7 @@ public class Show extends MetaDataHolder {
     public Show() {
         super();
     }
-    
+
     private String description;
     private List<Tag> tags;
     private int play_count;
@@ -47,4 +49,8 @@ public class Show extends MetaDataHolder {
     private int comment_count;
     private String[] sections;
     private String type;
+
+    public Map<String, Object> toMap() {
+        return JsonUtils.toMap(this);
+    }
 }

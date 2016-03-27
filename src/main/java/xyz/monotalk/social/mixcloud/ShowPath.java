@@ -16,7 +16,7 @@
 package xyz.monotalk.social.mixcloud;
 
 import xyz.monotalk.social.mixcloud.data.Show;
-import xyz.monotalk.social.mixcloud.internal.JacksonUtils;
+import xyz.monotalk.social.mixcloud.internal.JsonUtils;
 
 /**
  * ShowPath
@@ -49,6 +49,6 @@ public class ShowPath implements Pathable<Show>, RequesterBuilder {
 
     @Override
     public Show newResponse(String body) {
-        return JacksonUtils.readValue(body, Show.class);
+        return JsonUtils.readValue(body, Show.class);
     }
 }

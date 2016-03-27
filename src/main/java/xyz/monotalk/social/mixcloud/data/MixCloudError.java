@@ -5,8 +5,10 @@
  */
 package xyz.monotalk.social.mixcloud.data;
 
+import java.util.Map;
 import lombok.Builder;
 import lombok.Data;
+import xyz.monotalk.social.mixcloud.internal.JsonUtils;
 
 /**
  * MixCloudError
@@ -20,4 +22,8 @@ public class MixCloudError {
     private String message;
     private String type;
     private String retry_after;
+
+    public Map<String, Object> toMap() {
+        return JsonUtils.toMap(this);
+    }
 }

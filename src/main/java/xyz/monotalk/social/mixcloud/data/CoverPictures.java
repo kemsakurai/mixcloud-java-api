@@ -5,8 +5,10 @@
  */
 package xyz.monotalk.social.mixcloud.data;
 
+import java.util.Map;
 import lombok.Builder;
 import lombok.Data;
+import xyz.monotalk.social.mixcloud.internal.JsonUtils;
 
 /**
  * CoverPictures
@@ -20,4 +22,8 @@ public class CoverPictures {
     private String small;
     private String large;
     private String medium;
+
+    public Map<String, Object> toMap() {
+        return JsonUtils.toMap(this);
+    }
 }

@@ -14,7 +14,7 @@ import java.util.Map;
 import org.seasar.framework.util.tiger.GenericUtil;
 import xyz.monotalk.social.mixcloud.data.MixCloudResult;
 import xyz.monotalk.social.mixcloud.internal.Console;
-import xyz.monotalk.social.mixcloud.internal.JacksonUtils;
+import xyz.monotalk.social.mixcloud.internal.JsonUtils;
 
 /**
  * Direct
@@ -69,9 +69,9 @@ public class Direct<R> extends AbstractDirect<R> implements RequesterBuilder {
     @Override
     public R newResponse(String body) {
         if (clazz == MixCloudResult.class) {
-            return (R) JacksonUtils.readResultValue(body, clazz);
+            return (R) JsonUtils.readResultValue(body, clazz);
         }
-        return JacksonUtils.readValue(body, clazz);
+        return JsonUtils.readValue(body, clazz);
     }
 
     @Override

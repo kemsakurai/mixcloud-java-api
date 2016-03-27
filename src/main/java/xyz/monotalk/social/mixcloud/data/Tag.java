@@ -5,11 +5,13 @@
  */
 package xyz.monotalk.social.mixcloud.data;
 
+import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import xyz.monotalk.social.mixcloud.internal.JsonUtils;
 
 /**
  * Tag
@@ -30,4 +32,8 @@ public class Tag {
     private String url;
     private String name;
     private String key;
+    
+    public Map<String, Object> toMap() {
+        return JsonUtils.toMap(this);
+    }    
 }

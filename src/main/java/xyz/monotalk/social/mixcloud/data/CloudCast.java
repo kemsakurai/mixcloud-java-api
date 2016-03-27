@@ -8,9 +8,11 @@ package xyz.monotalk.social.mixcloud.data;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import xyz.monotalk.social.mixcloud.internal.JsonUtils;
 
 /**
  * CloudCast
@@ -60,4 +62,9 @@ public class CloudCast {
     private String type;
     @JsonProperty("hidden_stats")
     private String hiddenStats;
+
+    public Map<String, Object> toMap() {
+        return JsonUtils.toMap(this);
+    }
+
 }

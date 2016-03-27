@@ -17,7 +17,7 @@ import org.apache.http.StatusLine;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.util.EntityUtils;
 import xyz.monotalk.social.mixcloud.data.MixCloudError;
-import xyz.monotalk.social.mixcloud.internal.JacksonUtils;
+import xyz.monotalk.social.mixcloud.internal.JsonUtils;
 
 /**
  * MixCloudResponseHandler
@@ -64,7 +64,7 @@ public class MixCloudResponseHandler<R> implements ResponseHandler<R> {
                 throwNewException(statusLine);
             }
             String body = getBodyOrThrow(response);
-            MixCloudError error = JacksonUtils.readValue(body, MixCloudError.class);
+            MixCloudError error = JsonUtils.readValue(body, MixCloudError.class);
             throw new MixCloudRateLimitException(error);
         }
         

@@ -7,7 +7,7 @@ package xyz.monotalk.social.mixcloud;
 
 import xyz.monotalk.social.mixcloud.data.CloudCast;
 import xyz.monotalk.social.mixcloud.data.MixCloudResult;
-import xyz.monotalk.social.mixcloud.internal.JacksonUtils;
+import xyz.monotalk.social.mixcloud.internal.JsonUtils;
 
 /**
  * Hot
@@ -36,7 +36,7 @@ public class Hot implements Pathable<MixCloudResult<CloudCast>>, RequesterBuilde
 
     @Override
     public MixCloudResult<CloudCast> newResponse(String body) {
-        return JacksonUtils.readResultValue(body, CloudCast.class);
+        return JsonUtils.readResultValue(body, CloudCast.class);
     }
 
     @Override
