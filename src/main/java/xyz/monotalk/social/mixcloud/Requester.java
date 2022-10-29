@@ -61,7 +61,7 @@ public class Requester<R> {
     public R get() {
         // new instance
         HttpClient httpClient = newHttpClient();
-
+        // test comment
         // new HttpGet
         StringBuilder sb = new StringBuilder("");
         String path = pathable.toPath();
