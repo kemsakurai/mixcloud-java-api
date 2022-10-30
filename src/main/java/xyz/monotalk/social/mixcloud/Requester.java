@@ -33,6 +33,8 @@ public class Requester<R> {
     private boolean appendMetadata;
     private Integer limit;
     private Integer offset;
+    private String unusedString1 = "";
+    private String unusedString2 = "";
 
     public Requester(Pathable<R> pathable) {
         this.pathable = pathable;
