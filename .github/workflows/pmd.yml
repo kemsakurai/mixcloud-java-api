@@ -1,16 +1,15 @@
-name: checkstyle
+name: pmd
 on: [pull_request]
 jobs:
-  checkstyle_job:
+  pmd_job:
     runs-on: ubuntu-latest
-    name: Checkstyle job
+    name: PMD job
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Run check style
-      uses: nikitasavinov/checkstyle-action@master
+    - name: Run PMD
+      uses: kemsakurai/action-pmd@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        filter_mode: nofilter
         reporter: 'github-pr-check'
         tool_name: 'testtool'
