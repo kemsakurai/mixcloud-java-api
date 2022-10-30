@@ -13,4 +13,4 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         reporter: 'github-pr-check'
         src_path: ./
-        tool_name: 'reviewdog'
+        tool_name: 'pmd_reviewdog'
