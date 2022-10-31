@@ -11,5 +11,5 @@ jobs:
       uses: kemsakurai/action-pmd@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        reporter: 'github-pr-reviewe'
+        reporter: 'github-pr-review'
         tool_name: 'pmd_reviewdog'
