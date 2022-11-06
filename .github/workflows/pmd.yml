@@ -8,7 +8,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Run PMD
-      uses: kemsakurai/action-pmd@master
+      uses: kemsakurai/action-pmd@fix/issues/1
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         reporter: 'github-pr-review'
