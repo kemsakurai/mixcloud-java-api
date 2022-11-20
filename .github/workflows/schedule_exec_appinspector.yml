@@ -16,6 +16,7 @@ jobs:
       - name: Replace filePath
         run: |
           sed -i 's|/github/workspace/src|src|g' AppInspectorResults.sarif
+          sed -i 's|/github/workspace/gradlew.bat|gradlew.bat|g' AppInspectorResults.sarif
       - uses: actions/upload-artifact@v2
         with:
           name: AppInspectorResults
