@@ -12,6 +12,7 @@ jobs:
       - uses: microsoft/ApplicationInspector-Action@v1
         with:
           output-format: sarif
+          arguments: --base-path
       - uses: actions/upload-artifact@v2
         with:
             name: AppInspectorResults
