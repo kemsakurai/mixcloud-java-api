@@ -17,6 +17,9 @@ jobs:
         with:
           name: AppInspectorResults
           path: AppInspectorResults.sarif
+      - name: Replace filePath
+        run: |
+          sed -i 's|/github/workspace/src|src|g' AppInspectorResults.sarif
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v2
         with:
