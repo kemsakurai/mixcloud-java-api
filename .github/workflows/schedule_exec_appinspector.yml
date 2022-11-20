@@ -1,0 +1,18 @@
+name: schedule_exec_appinspector
+on:
+  schedule:
+    - cron: '0 4 1 * *'
+  workflow_dispatch:
+jobs:
+  schedule_exec_appinspector:
+    runs-on: ubuntu-latest
+    name: Schedule ApplicationInspector execution
+    steps:
+      - uses: actions/checkout@v2
+      - uses: microsoft/ApplicationInspector-Action@v1
+        with:
+          output-format: sarif
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: AppInspectorResults.sarif
