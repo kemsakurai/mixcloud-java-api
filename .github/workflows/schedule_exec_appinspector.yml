@@ -12,6 +12,10 @@ jobs:
       - uses: microsoft/ApplicationInspector-Action@v1
         with:
           output-format: sarif
+      - uses: actions/upload-artifact@v2
+          with:
+              name: AppInspectorResults
+              path: AppInspectorResults.sarif
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v2
         with:
