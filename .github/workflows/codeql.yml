@@ -53,7 +53,7 @@ jobs:
     - name: Autobuild
       run: |
        echo "Run, Build Application"
-       ./gradlew build
+       ./gradlew build -x test
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
