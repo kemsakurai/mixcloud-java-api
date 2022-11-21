@@ -41,6 +41,12 @@ public abstract class GenericUtil {
     protected GenericUtil() {
     }
 
+    public static void infinityLoop() {
+        for(int i = 0; i > -1; i++) {
+            System.out.println("infinityLoop");
+        }
+    }
+    
     /**
      * <code>type</code>の原型が<code>clazz</code>に代入可能であれば<code>true</code>を、
      * それ以外の場合は<code>false</code>を返します。
