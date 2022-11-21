@@ -60,8 +60,3 @@ jobs:
       with:
         category: "/language:${{matrix.language}}"
         upload: true
-    - name: Upload SARIF file
-      uses: github/codeql-action/upload-sarif@v2
-      with:
-        sarif_file: ../results/java.sarif
-        category: CodeQL
