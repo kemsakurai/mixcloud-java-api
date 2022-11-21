@@ -1,7 +1,6 @@
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
 apply plugin : 'maven-publish'
-apply from : 'local.gradle'
 
 def defaultEncoding = 'UTF-8'
 def jdkVersion = '1.8'
@@ -28,18 +27,21 @@ repositories {
 // In this section you declare the dependencies for your production and test code
 dependencies {
     // The production code uses the SLF4J logging API at compile time
-    compile 'org.apache.httpcomponents:httpclient:4.3.6'
-    compile 'org.apache.httpcomponents:httpmime:4.5.1'
-    compile 'com.fasterxml.jackson.core:jackson-databind:2.5.5'
-    compile 'org.slf4j:slf4j-api:1.7.7'
+    implementation 'org.apache.httpcomponents:httpclient:4.5.13'
+    implementation 'org.apache.httpcomponents:httpmime:4.5.13'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.5.5'
+    implementation 'org.slf4j:slf4j-api:1.7.7'
     
-    provided 'org.projectlombok:lombok:1.16.8'
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
     
     // Declare the dependency for your favourite test framework you want to use in your tests.
     // TestNG is also supported by the Gradle Test task. Just change the
     // testCompile dependency to testCompile 'org.testng:testng:6.8.1' and add
     // 'test.useTestNG()' to your build script.
-    testCompile 'junit:junit:4.12'
+    testCompileOnly 'org.projectlombok:lombok:1.18.24'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
+    testImplementation 'junit:junit:4.12'
 }
 
 // zip sources
@@ -50,28 +52,6 @@ task sourceJar(type : Jar) {
 // zip javadocs
 task javadocJar(type : Jar, dependsOn : javadoc) {
     from javadoc.destinationDir
-}
-
-// publishing description
-publishing {
-    publications {
-        dropwizardLsCommand(MavenPublication) {
-            from components.java
-            artifact sourceJar {
-                classifier = 'sources'
-                extension  = 'jar'
-            }
-            artifact javadocJar {
-                classifier = 'javadoc'
-                extension  = 'jar'
-            }
-        }
-    }
-    repositories {
-        maven {
-            url = "${repositoryUrl}"
-        }
-    }
 }
 
 test {
