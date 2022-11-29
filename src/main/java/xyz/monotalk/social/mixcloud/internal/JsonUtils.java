@@ -68,4 +68,11 @@ public class JsonUtils {
         }
         return result;
     }
+    
+    public static String test(String value) {
+        if (value.equals("true")) {
+            System.out.println("true"); // 出力されない
+        }
+        return value;
+    }
 }
