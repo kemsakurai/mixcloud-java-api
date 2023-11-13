@@ -20,4 +20,4 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        echo send-release-info...
+        echo ${{ toJson(github.event.release) }} | curl "https://httpbin.org/post" -X POST -H "accept: application/json" -H 'Content-Type: application/json' -d @-
