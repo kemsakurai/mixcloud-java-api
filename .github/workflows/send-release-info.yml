@@ -10,3 +10,4 @@ jobs:
       uses: kemsakurai/send-deployment-frequency-action/.github/actions/send-deployment-frequency@main
       with:
         web-hook-url: 'https://httpbin.org/post'
+        github-token: ${{ secrets.GITHUB_TOKEN }}
