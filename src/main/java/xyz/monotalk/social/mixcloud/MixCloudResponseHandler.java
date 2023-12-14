@@ -29,6 +29,8 @@ public class MixCloudResponseHandler<R> implements ResponseHandler<R> {
 
     private Pathable<R> pathable = null;
 
+    private String unuse7 = null; 
+    
     /**
      * MixCloudResponseHandler
      *
