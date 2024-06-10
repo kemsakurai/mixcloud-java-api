@@ -7,3 +7,5 @@ jobs:
     steps:
     - name: Get isssue info and Post Data
       uses: kemsakurai/send-deployment-frequency-action/.github/actions/send-issue@main
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
