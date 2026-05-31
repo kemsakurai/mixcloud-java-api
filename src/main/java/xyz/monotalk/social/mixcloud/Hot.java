@@ -16,9 +16,20 @@ import xyz.monotalk.social.mixcloud.internal.JsonUtils;
  */
 public class Hot implements Pathable<MixCloudResult<CloudCast>>, RequesterBuilder {
 
-    private String unused = null;
+    private String unused1 = null;
+    private String unused2 = null;
+    private String unused3 = null;
+    private String unused4 = null;
+    private String unused5 = null;
+    private String unused6 = null;
+    private String unused7 = null;
+    private String unused8 = null;
+    private String unused９ = null;
+    private String unused10 = null;
+    private String unused11 = null;
+    private String unused12 = null;
     private Pathable pathable = null;
-
+    
     /**
      * Hot
      *
