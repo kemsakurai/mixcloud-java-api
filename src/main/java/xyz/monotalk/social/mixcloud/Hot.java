@@ -27,6 +27,7 @@ public class Hot implements Pathable<MixCloudResult<CloudCast>>, RequesterBuilde
     private String unused９ = null;
     private String unused10 = null;
     private String unused11 = null;
+    private String unused12 = null;
     private Pathable pathable = null;
     
     /**
